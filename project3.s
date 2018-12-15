@@ -8,30 +8,32 @@
 
 .text
 main:
+  jal user_input
+  
   li $v0, 8  # reads the string in
   la $a0, userMsg
   li $a1, 250 # loads 250 into a1 register
   syscall
 
-user_input:
-  la $a0, userInput # takes userInput and puts into a0
-  li $v0, 4
-  syscall
-  li $v0, 5 # gets userInput
-  syscall
-  # display
-  la $a0,($v0) # loads userInput into $a0
-  syscall 
+  user_input:
+    la $a0, userInput # takes userInput and puts into a0
+    li $v0, 4
+    syscall
+    li $v0, 5 # gets userInput
+    syscall
+    # display
+    la $a0,($v0) # loads userInput into $a0
+    syscall 
   
-exit:  # exit function
-  li $v0, 10 # loads exit/10
-  syscall
+  exit:  # exit function
+    li $v0, 10 # loads exit/10
+    syscall
   
-error_empty_input:  # empty case
-  la $a0, emptyMsg  # load emptyMsg string into register $a0  
-  li $v0, 4  # print string
-  syscall
-  j exit  # jumps to exit function
+  error_empty_input:  # empty case
+    la $a0, emptyMsg  # load emptyMsg string into register $a0  
+    li $v0, 4  # print string
+    syscall
+    j exit  # jumps to exit function
   
 error_long_input:  # long input case
   la $a0, errorMsg  # load errorMsg string into register
