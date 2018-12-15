@@ -7,6 +7,12 @@
   userInput: .asciiz  "Enter string up to 4 characters: "
 
 .text
+main:
+  li $v0, 8  # reads the string in
+  la $a0, userMsg
+  li $a1, 250 # loads 250 into a1 register
+  syscall
+
 user_input:
   la $a0, userInput # takes userInput and puts into a0
   li $v0, 4
@@ -38,12 +44,6 @@ error_invalid_input:  # invalid input case
   li $v0, 4
   syscall
   j exit
-
-main:
-  li $v0, 8  # reads the string in
-  la $a0, userMsg
-  li $a1, 250 # loads 250 into a1 register
-  syscall
   
 delete_left_spaces:  # deletes spaces from left side
   li $t3, 32  # $t3 = 32(space)
