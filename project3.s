@@ -11,6 +11,11 @@ user_input:
   la $a0, userInput # takes userInput and puts into a0
   li $v0, 4
   syscall
+  li $v0, 5 # gets userInput
+  syscall
+  # display
+  la $a0,($v0) # loads userInput into $a0
+  syscall 
   
 exit:  # exit function
   li $v0, 10 # loads exit/10
