@@ -4,8 +4,14 @@
   errorMsg: .asciiz "Input is too long."
   userMsg: .space 500
   invalidMsg: .asciiz "Invalid base-31 number."
+  userInput: .asciiz  "Enter string up to 4 characters: "
 
 .text
+user_input:
+  la $a0, userInput # takes userInput and puts into a0
+  li $v0, 4
+  syscall
+  
 exit:  # exit function
   li $v0, 10 # loads exit/10
   syscall
